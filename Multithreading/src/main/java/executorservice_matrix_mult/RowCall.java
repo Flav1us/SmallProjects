@@ -15,7 +15,7 @@ public class RowCall implements Callable<int[]> {
 		this.col = col;
 	}
 
-	public int[] call() {
+	public int[] call() throws InterruptedException {
 		//System.out.println("thread run");
 		int[] res = new int[b.values[0].length];
 		for(int j = 0; j < b.values[0].length; j++) {
@@ -23,6 +23,9 @@ public class RowCall implements Callable<int[]> {
 				res[j] += a.values[col][t]*b.values[t][j];
 			}
 		}
+		System.out.println("sleeping");
+		Thread.sleep(1000);
+		System.out.println("awake");
 		return res;
 	}
 
