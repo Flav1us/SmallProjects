@@ -22,8 +22,12 @@ public class ESMatrixMult {
 		for(int i = 0; i < a.values.length; i++) {
 			 tasks.add(es.submit(new RowCall(a, b, i)));
 		}
+		es.shutdown();
+		/*System.out.println("mt sleep");
+		Thread.sleep(995);
+		System.out.println("mt awake");*/
 		for(int i = 0; i < a.values.length; i++) {
-			res.values[i] = tasks.get(i).get();
+			res.values[i] = tasks.iterator().next().get();
 		}
 		return res;	
 	}
